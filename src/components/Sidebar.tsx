@@ -2,13 +2,14 @@ import { ReactElement } from "react";
 import styled from "styled-components";
 import SidebarLogo from './SidebarLogo';
 import SidebarBoards from './SidebarBoards';
-import SidebarThemeToggle from './SidebarBoards';
+import SidebarThemeToggle from './SidebarThemeToggle';
 
 
 const SidebarWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    padding: 20px;
     justify-content: space-between;
     width: 320px;
     background: #2c2c37;

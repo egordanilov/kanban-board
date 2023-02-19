@@ -6,7 +6,7 @@ const SidebarThemeToggleWrapper = styled.div``;
 function SidebarThemeToggle():ReactElement {
     return (
         <SidebarThemeToggleWrapper>
-            List of boards
+           ThemeToggle Night Day Mode
         </SidebarThemeToggleWrapper>
     )
 }

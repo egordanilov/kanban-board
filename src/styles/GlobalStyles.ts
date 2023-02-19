@@ -6,8 +6,13 @@ const GlobalStyles = createGlobalStyle<{theme: ThemeType}>`
     ${CssReset};
     
     body {
-        font-family: sans-serif;
+        font-family: 'Lato', sans-serif;
         background: ${(props) => props.theme.color.background};
+        color: white;
+    }
+
+    a {
+        text-decoration: none;
         color: white;
     }
 `;
