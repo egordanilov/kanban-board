@@ -14,6 +14,9 @@ const GlobalStyles = createGlobalStyle<{theme: ThemeType}>`
     a {
         text-decoration: none;
         color: white;
+        &:hover {
+            opacity: 0.9;
+        }
     }
 `;
 

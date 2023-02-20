@@ -10,6 +10,7 @@ const SidebarLogoWrapper = styled(Link)`
     font-weight: 700;
     font-size: 32px;
     padding-top: 15px;
+    padding-left: 20px;
 `;
 
 const SidebarLogoBar = styled.div`
