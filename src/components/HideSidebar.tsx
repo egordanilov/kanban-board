@@ -1,6 +1,9 @@
 import { ReactElement } from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from 'react-redux';
+import { closeSidebar, openSidebar } from "../store/uiSlice";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { RootState } from "../store/store";
 
 const HideSidebarWrapper = styled.div`
     display: flex;
@@ -16,8 +19,11 @@ const HideSidebarWrapper = styled.div`
 `;
 
 function HideSidebar():ReactElement{
+    const sidebarIsOpen = useSelector((state: RootState) => state.ui.sidebarIsOpen)
+    const dispatch = useDispatch();
+
     return(
-        <HideSidebarWrapper onClick={() => {console.log('hide sidebar toggle')}}>
+        <HideSidebarWrapper onClick={() => {dispatch(closeSidebar())}}>
          <FaRegEyeSlash />
          <span>Hide sidebar</span>
         </HideSidebarWrapper>

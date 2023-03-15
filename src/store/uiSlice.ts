@@ -19,6 +19,7 @@ export const uiSlice = createSlice({
             state.nightModeIsOn = !state.nightModeIsOn;
         },
         closeSidebar: (state) => {
+            console.log('close sidebar was clicked');
             state.sidebarIsOpen = false;
         },
         openSidebar: (state) => {
