@@ -11,7 +11,7 @@ const ShowSidebarWrapper = styled.span<{sidebarIsOpen: boolean}>`
     color: #fff;
     opacity: 0.4;
     position: absolute;
-    top: 10px;
+    top: 24px;
     left: 10px;
     &:hover {
         cursor: pointer;

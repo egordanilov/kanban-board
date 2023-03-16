@@ -11,6 +11,8 @@ const CanvasWrapper = styled.div<{sidebarIsOpen: boolean, nightModeIsOn: boolean
     background: #21212c;
     height: 100vh;
     position: relative;
+    display: flex;
+    flex-direction: column;
 `;
 
 function Canvas():ReactElement {

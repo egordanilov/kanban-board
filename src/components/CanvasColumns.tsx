@@ -1,8 +1,18 @@
+import styled from 'styled-components';
+import CanvasColumn from "./CanvasColumn";
+
+const CanvasColumnsWrapper = styled.section`
+
+`;
+
 function CanvasColumns() {
     return(
-        <>
-            Canvas Columns go here
-        </>
+        <div>
+            <CanvasColumn />
+            <CanvasColumn />
+            <CanvasColumn />
+            <CanvasColumn />
+        </div>
     )
 }
 
