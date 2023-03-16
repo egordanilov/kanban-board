@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
 import ShowSidebar from "./ShowSidebar";
 import styled from "styled-components";

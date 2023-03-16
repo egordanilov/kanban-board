@@ -1,8 +1,9 @@
 import React, { FC, ReactElement } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RootState } from '../store/store';
+import { openSidebar } from '../store/uiSlice';
 
 const ShowSidebarWrapper = styled.span<{sidebarIsOpen: boolean}>`
     display: ${(props) => props.sidebarIsOpen ? 'none' : 'block'};
@@ -19,9 +20,13 @@ const ShowSidebarWrapper = styled.span<{sidebarIsOpen: boolean}>`
 `;
 
 function ShowSidebar() {
-    const uiState = useSelector((state: RootState) => state.ui)
+    const uiState = useSelector((state: RootState) => state.ui);
+    const dispatch = useDispatch();
     return (
-        <ShowSidebarWrapper sidebarIsOpen={uiState.sidebarIsOpen}>
+        <ShowSidebarWrapper
+            sidebarIsOpen={uiState.sidebarIsOpen}
+            onClick={() => {dispatch(openSidebar())}}
+        >
             <RxHamburgerMenu />
         </ShowSidebarWrapper>
     )
