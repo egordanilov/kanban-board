@@ -1,6 +1,4 @@
-import React, { ReactNode } from "react";
 import styled from 'styled-components';
-import { JsxElement } from "typescript";
 
 type Subtask = {
     subtask_name: string;

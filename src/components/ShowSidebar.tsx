@@ -1,4 +1,3 @@
-import React, { FC, ReactElement } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { RxHamburgerMenu } from "react-icons/rx";
