@@ -1,7 +1,9 @@
 import { ReactElement } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import ShowSidebar from "./ShowSidebar";
+import CanvasHeader from "./CanvasHeader";
+import CanvasColumns from "./CanvasColumns";
 import styled from "styled-components";
 
 const CanvasWrapper = styled.div<{sidebarIsOpen: boolean, nightModeIsOn: boolean}>`
@@ -9,6 +11,8 @@ const CanvasWrapper = styled.div<{sidebarIsOpen: boolean, nightModeIsOn: boolean
     background: #21212c;
     height: 100vh;
     position: relative;
+    display: flex;
+    flex-direction: column;
 `;
 
 function Canvas():ReactElement {
@@ -16,7 +20,8 @@ function Canvas():ReactElement {
     return(
         <CanvasWrapper sidebarIsOpen={uiState.sidebarIsOpen} nightModeIsOn={uiState.nightModeIsOn}>
             <ShowSidebar />
-            Canvas goes here
+            <CanvasHeader />
+            <CanvasColumns />
         </CanvasWrapper>
     )
 }
