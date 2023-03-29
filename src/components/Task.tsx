@@ -6,6 +6,7 @@ type Subtask = {
 }
 
 type TaskProps = {
+    id: string;
     name: string;
     description: string;
     subtasks: Subtask[];
