@@ -5,6 +5,7 @@ const CanvasColumnsWrapper = styled.section`
     display: flex;
     padding-top: 20px;
     padding-left: 20px;
+    overflow: scroll;
 `;
 
 function CanvasColumns() {

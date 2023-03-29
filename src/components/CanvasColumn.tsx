@@ -1,12 +1,16 @@
 import styled from "styled-components";
+import Task from './Task';
 
 const CanvasColumnWrapper = styled.div`
     min-width: 250px;
+    margin-right: 20px;
+    min-height: 100vh;
 `;
 const CanvasColumnHeader = styled.div`
     display: flex;
     font-size: 12px;
     letter-spacing: .2em;
+    margin-bottom: 15px;
 `;
 const CanvasColumnHeaderCircle = styled.div`
     height: 12px;
@@ -16,9 +20,6 @@ const CanvasColumnHeaderCircle = styled.div`
     margin-right: 7px;
 `;
 
-const TaskWrapper = styled.div`
-    background: #2c2c37;
-`;
 
 function CanvasColumn() {
     return (
@@ -26,8 +27,12 @@ function CanvasColumn() {
             <CanvasColumnHeader>
                 <CanvasColumnHeaderCircle />TODO (4)
             </CanvasColumnHeader>
-            <br />Task 1
-            <br />Task 2
+            <Task name="Research pricing points" description="We know what we need to build for version 1, now we need to finalize the first pricing model we'll use. Keep iterating the subtasks until we have a coherent proposition." subtasks={[{subtask_name: "First Subtask", subtask_isCompleted: true}]} status="todo" />
+            <Task name="Research pricing points" description="We know what we need to build for version 1, now we need to finalize the first pricing model we'll use. Keep iterating the subtasks until we have a coherent proposition." subtasks={[{subtask_name: "First Subtask", subtask_isCompleted: true}]} status="todo" />
+            <Task name="Research pricing points" description="We know what we need to build for version 1, now we need to finalize the first pricing model we'll use. Keep iterating the subtasks until we have a coherent proposition." subtasks={[{subtask_name: "First Subtask", subtask_isCompleted: true}]} status="todo" />
+            <Task name="Research pricing points" description="We know what we need to build for version 1, now we need to finalize the first pricing model we'll use. Keep iterating the subtasks until we have a coherent proposition." subtasks={[{subtask_name: "First Subtask", subtask_isCompleted: true}]} status="todo" />
+            <Task name="Research pricing points" description="We know what we need to build for version 1, now we need to finalize the first pricing model we'll use. Keep iterating the subtasks until we have a coherent proposition." subtasks={[{subtask_name: "First Subtask", subtask_isCompleted: true}]} status="todo" />
+            <Task name="Research pricing points" description="We know what we need to build for version 1, now we need to finalize the first pricing model we'll use. Keep iterating the subtasks until we have a coherent proposition." subtasks={[{subtask_name: "First Subtask", subtask_isCompleted: true}]} status="todo" />
         </CanvasColumnWrapper>
     )
 }
