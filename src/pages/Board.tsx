@@ -1,4 +1,6 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getTasks } from '../store/taskSlice';
 import styled from 'styled-components';
 import Canvas from '../components/Canvas';
 import Sidebar from '../components/Sidebar';
@@ -12,6 +14,12 @@ const BoardWrapper = styled.section`
 `;
 
 function Board():ReactElement {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getTasks());
+    }, []);
+
     return (
         <BoardWrapper>
             <Sidebar />

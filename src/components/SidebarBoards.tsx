@@ -1,8 +1,11 @@
 import { ReactElement } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { setActiveBoard } from '../store/taskSlice';
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import { FaRegPlusSquare, 
     FaRegClipboard } from 'react-icons/fa';
+import { RootState } from "../store/store";
 
 const SidebarBoardsWrapper = styled.div`
     display: flex;
@@ -59,21 +62,24 @@ const BoardListElement = styled.button<BoardListElementProps>`
 
 
 function SidebarBoards():ReactElement {
+    const dispatch = useDispatch();
+    const activeBoard = useSelector((state: RootState) => state.task.activeBoard);
+    const tasks = useSelector((state: RootState) => state.task.tasks)
+
+    const boardListArray = tasks.map((item) => item.board_name);
+    const uniqueBoardListArray = [...new Set(boardListArray)];
     return (
         <SidebarBoardsWrapper>
-            <SidebarBoardsHeader>All Boards (8)</SidebarBoardsHeader>
-            <BoardListElement active={true}>
-                <FaRegClipboard />
-                <span>Platform launch</span>
-            </BoardListElement>
-            <BoardListElement active={false}>
-                <FaRegClipboard />
-                <span>Marketing plan</span>
-            </BoardListElement>
-            <BoardListElement active={false}>
-                <FaRegClipboard />
-                <span>Roadmap</span>
-            </BoardListElement>
+            <SidebarBoardsHeader>All Boards ({uniqueBoardListArray.length})</SidebarBoardsHeader>
+            {uniqueBoardListArray.map((boardName) => {
+                return (
+                    <BoardListElement active={boardName === activeBoard} onClick={() => {dispatch(setActiveBoard(boardName))}}>
+                        <FaRegClipboard />
+                        <span>{boardName}</span>
+                    </BoardListElement>
+                )
+            })}
+            
             <SidebarCreateNewBoard to="/board/add-task" aria-label="Create a new board">
                 <FaRegPlusSquare />
                 <span>Create New Board</span>
