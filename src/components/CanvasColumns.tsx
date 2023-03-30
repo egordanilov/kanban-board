@@ -21,7 +21,11 @@ function CanvasColumns() {
         <CanvasColumnsWrapper>
             {uniqueTaskStatuses.map((status) => {
                 return (
-                    <CanvasColumn status={status} numberOfTasks={tasksFilteredByActiveBoard.filter((task) => task.status === status).length} />
+                    <CanvasColumn
+                        status={status}
+                        numberOfTasks={tasksFilteredByActiveBoard.filter((task) => task.status === status).length} 
+                        tasks={tasksFilteredByActiveBoard.filter((task) => task.status === status)}
+                    />
                 )
             })}
         </CanvasColumnsWrapper>

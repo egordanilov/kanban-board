@@ -18,20 +18,33 @@ const CanvasColumnHeaderCircle = styled.div`
     border-radius: 50%;
     background: #8371f0;
     margin-right: 7px;
+
+    
+
 `;
 
 interface CanvasColumnProps {
     status: string;
     numberOfTasks: number;
+    tasks: Task[];
 }
 
-function CanvasColumn({status, numberOfTasks}: CanvasColumnProps) {
+function CanvasColumn({status, numberOfTasks, tasks}: CanvasColumnProps) {
     return (
         <CanvasColumnWrapper>
             <CanvasColumnHeader>
                 <CanvasColumnHeaderCircle />{status.toLocaleUpperCase()} ({numberOfTasks})
             </CanvasColumnHeader>
-            <Task id="642487a5c640f80539acdb14" name="Research pricing points" description="We know what we need to build for version 1, now we need to finalize the first pricing model we'll use. Keep iterating the subtasks until we have a coherent proposition." subtasks={[{subtask_name: "First Subtask", subtask_isCompleted: true}]} status="todo" />
+            {tasks.map((task) => {
+                return(
+                    <Task id={task.id}
+                        name={task.name}
+                        description={task.description}
+                        subtasks={task.subtasks}
+                        status={status as "todo" | "doing" | "done"}
+                    />
+                )
+            })}
         </CanvasColumnWrapper>
     )
 }
