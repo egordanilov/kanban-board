@@ -1,4 +1,4 @@
-const Tasks = [
+const TasksJSON = [
     {
       "id": "642487a5c640f80539acdb14",
       "name": "enim reprehenderit adipisicing",
@@ -895,4 +895,4 @@ const Tasks = [
     }
   ];
 
-export default Tasks;
+export default TasksJSON;
