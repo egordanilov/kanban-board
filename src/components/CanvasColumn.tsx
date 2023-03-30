@@ -20,12 +20,16 @@ const CanvasColumnHeaderCircle = styled.div`
     margin-right: 7px;
 `;
 
+interface CanvasColumnProps {
+    status: string;
+    numberOfTasks: number;
+}
 
-function CanvasColumn() {
+function CanvasColumn({status, numberOfTasks}: CanvasColumnProps) {
     return (
         <CanvasColumnWrapper>
             <CanvasColumnHeader>
-                <CanvasColumnHeaderCircle />TODO (4)
+                <CanvasColumnHeaderCircle />{status.toLocaleUpperCase()} ({numberOfTasks})
             </CanvasColumnHeader>
             <Task id="642487a5c640f80539acdb14" name="Research pricing points" description="We know what we need to build for version 1, now we need to finalize the first pricing model we'll use. Keep iterating the subtasks until we have a coherent proposition." subtasks={[{subtask_name: "First Subtask", subtask_isCompleted: true}]} status="todo" />
         </CanvasColumnWrapper>
