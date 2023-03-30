@@ -4,6 +4,7 @@ import { getTasks } from '../store/taskSlice';
 import styled from 'styled-components';
 import Canvas from '../components/Canvas';
 import Sidebar from '../components/Sidebar';
+import AddNewTask from '../components/AddNewTask';
 
 const BoardWrapper = styled.section`
     display: flex;
@@ -24,6 +25,7 @@ function Board():ReactElement {
         <BoardWrapper>
             <Sidebar />
             <Canvas />
+            <AddNewTask />
         </BoardWrapper>
     )
 }
