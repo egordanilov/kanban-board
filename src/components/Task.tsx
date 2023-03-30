@@ -26,6 +26,11 @@ const TaskWrapper = styled.div`
     padding: 10px;
     background: #2c2c37;
     filter: drop-shadow(1px 1px 2px #2c2c37);
+
+    &:hover {
+        opacity: 0.9;
+        cursor: pointer;
+    }
 `;
 
 const TaskName = styled.div`
@@ -42,7 +47,7 @@ function Task({name, description, subtasks, status}:TaskProps) {
     return (
         <TaskWrapper>
             <TaskName>{name}</TaskName>
-            <NumberOfSubtasks>0 of 3 subtasks</NumberOfSubtasks>
+            <NumberOfSubtasks>0 of {subtasks.length} subtasks</NumberOfSubtasks>
         </TaskWrapper>
     )
 }

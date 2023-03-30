@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 import CanvasColumn from "./CanvasColumn";
+import { RootState } from '../store/store';
 
 const CanvasColumnsWrapper = styled.section`
     display: flex;
@@ -9,12 +11,23 @@ const CanvasColumnsWrapper = styled.section`
 `;
 
 function CanvasColumns() {
+    const tasks = useSelector((state: RootState) => state.task.tasks);
+    const activeBoard = useSelector((state: RootState) => state.task.activeBoard);
+    const tasksFilteredByActiveBoard = tasks.filter((task) => task.board_name === activeBoard);
+    const taskStatuses = tasks.map(task => task.status);
+    const uniqueTaskStatuses = [...new Set(taskStatuses)];
+
     return(
         <CanvasColumnsWrapper>
-            <CanvasColumn />
-            <CanvasColumn />
-            <CanvasColumn />
-            <CanvasColumn />
+            {uniqueTaskStatuses.map((status) => {
+                return (
+                    <CanvasColumn
+                        status={status}
+                        numberOfTasks={tasksFilteredByActiveBoard.filter((task) => task.status === status).length} 
+                        tasks={tasksFilteredByActiveBoard.filter((task) => task.status === status)}
+                    />
+                )
+            })}
         </CanvasColumnsWrapper>
     )
 }
