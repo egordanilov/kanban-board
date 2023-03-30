@@ -42,6 +42,7 @@ function CanvasColumn({status, numberOfTasks, tasks}: CanvasColumnProps) {
                         description={task.description}
                         subtasks={task.subtasks}
                         status={status as "todo" | "doing" | "done"}
+                        key={task.id}
                     />
                 )
             })}

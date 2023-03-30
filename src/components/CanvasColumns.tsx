@@ -25,6 +25,7 @@ function CanvasColumns() {
                         status={status}
                         numberOfTasks={tasksFilteredByActiveBoard.filter((task) => task.status === status).length} 
                         tasks={tasksFilteredByActiveBoard.filter((task) => task.status === status)}
+                        key={status}
                     />
                 )
             })}

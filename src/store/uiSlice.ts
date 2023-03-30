@@ -4,11 +4,13 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 export interface UIState {
     nightModeIsOn: boolean;
     sidebarIsOpen: boolean;
+    addNewTaskIsOpen: boolean;
 }
 
 const initialState: UIState = {
     nightModeIsOn: true,
     sidebarIsOpen: true,
+    addNewTaskIsOpen: true,
 }
 
 export const uiSlice = createSlice({
@@ -19,15 +21,20 @@ export const uiSlice = createSlice({
             state.nightModeIsOn = !state.nightModeIsOn;
         },
         closeSidebar: (state) => {
-            console.log('close sidebar was clicked');
             state.sidebarIsOpen = false;
         },
         openSidebar: (state) => {
             state.sidebarIsOpen = true;
-        }
+        },
+        closeAddNewTask: (state) => {
+            state.addNewTaskIsOpen = false;
+        },
+        openAddNewTask: (state) => {
+            state.addNewTaskIsOpen = true;
+        },
     },
 })
 
-export const { toggleNightMode, closeSidebar, openSidebar } = uiSlice.actions;
+export const { toggleNightMode, closeSidebar, openSidebar, openAddNewTask, closeAddNewTask } = uiSlice.actions;
 
 export default uiSlice.reducer;

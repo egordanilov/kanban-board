@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
+import { openAddNewTask } from "../store/uiSlice";
 
 const CanvasHeaderWrapper = styled.div`
     display: flex;
@@ -38,10 +39,11 @@ const CanvasHeaderAddNewTask = styled.button`
 
 function CanvasHeader() {
     const activeBoard = useSelector((state: RootState) => state.task.activeBoard);
+    const dispatch = useDispatch();
     return(
         <CanvasHeaderWrapper>
             <BoardNameHeading>{activeBoard}</BoardNameHeading>
-            <CanvasHeaderAddNewTask>New Task</CanvasHeaderAddNewTask>
+            <CanvasHeaderAddNewTask onClick={() => {dispatch(openAddNewTask())}}>New Task</CanvasHeaderAddNewTask>
         </CanvasHeaderWrapper>
     )
 }

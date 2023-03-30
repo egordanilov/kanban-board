@@ -73,7 +73,11 @@ function SidebarBoards():ReactElement {
             <SidebarBoardsHeader>All Boards ({uniqueBoardListArray.length})</SidebarBoardsHeader>
             {uniqueBoardListArray.map((boardName) => {
                 return (
-                    <BoardListElement active={boardName === activeBoard} onClick={() => {dispatch(setActiveBoard(boardName))}}>
+                    <BoardListElement
+                        active={boardName === activeBoard}
+                        onClick={() => {dispatch(setActiveBoard(boardName))}}
+                        key={boardName}
+                    >
                         <FaRegClipboard />
                         <span>{boardName}</span>
                     </BoardListElement>
