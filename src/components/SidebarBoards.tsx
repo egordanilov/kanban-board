@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import { setActiveBoard } from '../store/taskSlice';
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import { FaRegPlusSquare, 
@@ -61,6 +62,7 @@ const BoardListElement = styled.button<BoardListElementProps>`
 
 
 function SidebarBoards():ReactElement {
+    const dispatch = useDispatch();
     const activeBoard = useSelector((state: RootState) => state.task.activeBoard);
     const tasks = useSelector((state: RootState) => state.task.tasks)
 
@@ -71,7 +73,7 @@ function SidebarBoards():ReactElement {
             <SidebarBoardsHeader>All Boards ({uniqueBoardListArray.length})</SidebarBoardsHeader>
             {uniqueBoardListArray.map((boardName) => {
                 return (
-                    <BoardListElement active={boardName === activeBoard}>
+                    <BoardListElement active={boardName === activeBoard} onClick={() => {dispatch(setActiveBoard(boardName))}}>
                         <FaRegClipboard />
                         <span>{boardName}</span>
                     </BoardListElement>

@@ -20,8 +20,11 @@ export const taskSlice = createSlice({
             state.tasks = TasksJSON as Task[];
             state.activeBoard = state.tasks[0].board_name;
         },
+        setActiveBoard: (state, {payload}) => {
+            state.activeBoard = payload;
+        },
     },
 });
 
-export const { getTasks } = taskSlice.actions;
+export const { getTasks, setActiveBoard } = taskSlice.actions;
 export default taskSlice.reducer;
