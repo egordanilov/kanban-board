@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 const CanvasHeaderWrapper = styled.div`
     display: flex;
@@ -35,9 +37,10 @@ const CanvasHeaderAddNewTask = styled.button`
 `;
 
 function CanvasHeader() {
+    const activeBoard = useSelector((state: RootState) => state.task.activeBoard);
     return(
         <CanvasHeaderWrapper>
-            <BoardNameHeading>Platform Launch</BoardNameHeading>
+            <BoardNameHeading>{activeBoard}</BoardNameHeading>
             <CanvasHeaderAddNewTask>New Task</CanvasHeaderAddNewTask>
         </CanvasHeaderWrapper>
     )
