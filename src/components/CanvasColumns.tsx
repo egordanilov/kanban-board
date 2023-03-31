@@ -15,7 +15,8 @@ function CanvasColumns() {
     const activeBoard = useSelector((state: RootState) => state.task.activeBoard);
     const tasksFilteredByActiveBoard = tasks.filter((task) => task.board_name === activeBoard);
     const taskStatuses = tasks.map(task => task.status);
-    const uniqueTaskStatuses = [...new Set(taskStatuses)];
+    //const uniqueTaskStatuses = [...new Set(taskStatuses)];
+    const uniqueTaskStatuses = ['todo', 'doing', 'done'];
 
     return(
         <CanvasColumnsWrapper>

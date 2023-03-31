@@ -4,7 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { RootState } from "../store/store";
 import { closeAddNewTask } from "../store/uiSlice";
 import { EventEmitter } from "stream";
-import { addSubtask, removeSubtask, setNewTaskName, setNewTaskDescription, setNewTaskStatus } from "../store/taskSlice";
+import { addSubtask, removeSubtask, setNewTaskName, setNewTaskDescription, setNewTaskStatus, addNewTaskToTasks, resetNewTaskFormFields } from "../store/taskSlice";
 import { RxCross2 } from "react-icons/rx";
 
 const AddNewTaskWrapper = styled.section<{addNewTaskIsOpen: boolean}>`
@@ -91,6 +91,7 @@ function AddNewTask() {
     const addNewSubtaskHandler = (event: FormEvent) => {
         event.preventDefault();
         dispatch(addSubtask({subtask_name: subtask.subtask_name, subtask_isCompleted: false, id: (new Date()).valueOf().toString()}));
+        setSubtask({subtask_name: '', subtask_isCompleted: false});
     }
 
     const removeSubtaskFromNewTaskHandler = (id: string) => {
@@ -106,7 +107,9 @@ function AddNewTask() {
             board_name: activeBoardName,
             status: newTask.status,
         }
-        console.log(newTaskObject);
+        dispatch(addNewTaskToTasks(newTaskObject));
+        dispatch(closeAddNewTask());
+        dispatch(resetNewTaskFormFields());
     }
 
     return (
