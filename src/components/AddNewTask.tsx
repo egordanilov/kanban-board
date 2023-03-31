@@ -26,7 +26,9 @@ const FormWrapper = styled.div`
     background: #2c2c37;
     border-radius: 10px;
     padding: 30px;
+    position: relative;
 `;
+
 
 const FormGroupWrapper = styled.div`
     margin-bottom: 15px;
@@ -34,6 +36,12 @@ const FormGroupWrapper = styled.div`
     flex-direction: column;
     align-items: left;
     justify-content: flex-start;
+`;
+
+const CloseAddNewTaskForm = styled.div`
+    position: absolute;
+    right: 10px;
+    top: 10px;
 `;
 
 const FormGroupLabel = styled.label`
@@ -89,7 +97,12 @@ function AddNewTask() {
 
     return (
         <AddNewTaskWrapper addNewTaskIsOpen={addNewTaskIsOpen} onClick={() => {/*dispatch(closeAddNewTask())*/}}>
+            
             <FormWrapper>
+                <CloseAddNewTaskForm>
+                    <RxCross2 onClick={() => {dispatch(closeAddNewTask())}}/>
+                </CloseAddNewTaskForm>
+                
                 <form onSubmit={(e) => {e.preventDefault()}}>
                     <FormHeading>Add New Task</FormHeading>
 
