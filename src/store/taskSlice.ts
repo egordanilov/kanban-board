@@ -49,6 +49,14 @@ export const taskSlice = createSlice({
         setActiveBoard: (state, {payload}) => {
             state.activeBoard = payload;
         },
+        setNewTaskName: (state, {payload}) => {
+            state.newTask.name = payload;
+        },
+        setNewTaskDescription: (state, {payload}) => {
+            state.newTask.description = payload;
+        },
+        
+
         addSubtask: (state, {payload}) => {
             state.newTask.subtasks = [...state.newTask.subtasks, payload];
         },

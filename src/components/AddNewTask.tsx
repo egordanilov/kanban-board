@@ -77,7 +77,9 @@ const SubtaskElement = styled.div`
 
 function AddNewTask() {
     const addNewTaskIsOpen = useSelector((state: RootState) => state.ui.addNewTaskIsOpen);
-    const newSubtasks = useSelector((state: RootState) => state.task.newTask.subtasks)
+    const newTask = useSelector((state: RootState) => state.task.newTask);
+    const newSubtasks = useSelector((state: RootState) => state.task.newTask.subtasks);
+    const activeBoardName = useSelector((state: RootState) => state.task.activeBoard);
     const dispatch = useDispatch();
     const [subtask, setSubtask] = useState({subtask_name: '', subtask_isCompleted: false});
 
@@ -95,8 +97,20 @@ function AddNewTask() {
        dispatch(removeSubtask(id));
     }
 
+    function addNewTaskSubmitHandler() {
+        var newTaskObject = {
+            id: (new Date()).valueOf().toString(),
+            name: newTask.name,
+            description: newTask.description,
+            subtasks: newTask.subtasks,
+            board_name: activeBoardName,
+            status: newTask.status,
+        }
+        console.log(newTask);
+    }
+
     return (
-        <AddNewTaskWrapper addNewTaskIsOpen={addNewTaskIsOpen} onClick={() => {/*dispatch(closeAddNewTask())*/}}>
+        <AddNewTaskWrapper addNewTaskIsOpen={addNewTaskIsOpen}>
             
             <FormWrapper>
                 <CloseAddNewTaskForm>
@@ -108,7 +122,13 @@ function AddNewTask() {
 
                     <FormGroupWrapper>
                         <FormGroupLabel htmlFor="name">Task Name</FormGroupLabel>
-                        <input type="text" id="name" placeholder="e.g. Take a coffee break" />
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="e.g. Take a coffee break"
+                            value={newTask.name}
+                            onChange={() => {}}
+                        />
                     </FormGroupWrapper>
                     
                     <FormGroupWrapper>
@@ -117,6 +137,8 @@ function AddNewTask() {
                             id="description"
                             placeholder="E.g. It's always good to take a break. This 15 minute break will recharge the batteries a little."
                             rows={4}
+                            value={newTask.description}
+                            onChange={() => {}}
                         />
                     </FormGroupWrapper>
 
@@ -143,7 +165,7 @@ function AddNewTask() {
                             <option value="doing">Doing</option>
                             <option value="done">Done</option>
                         </select>
-                        <button>Create Task</button>
+                        <button onClick={() => {addNewTaskSubmitHandler()}}>Create Task</button>
                     </FormGroupWrapper>
                 </form>
             </FormWrapper>
