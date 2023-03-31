@@ -1,6 +1,7 @@
 type Subtask = {
     subtask_name: string;
     subtask_isCompleted: boolean;
+    id: string;
 }
 
 interface Task {
