@@ -55,8 +55,9 @@ export const taskSlice = createSlice({
         setNewTaskDescription: (state, {payload}) => {
             state.newTask.description = payload;
         },
-        
-
+        setNewTaskStatus: (state, {payload}) => {
+            state.newTask.status = payload;
+        },
         addSubtask: (state, {payload}) => {
             state.newTask.subtasks = [...state.newTask.subtasks, payload];
         },
@@ -66,5 +67,5 @@ export const taskSlice = createSlice({
     },
 });
 
-export const { getTasks, setActiveBoard, addSubtask, removeSubtask } = taskSlice.actions;
+export const { getTasks, setActiveBoard, addSubtask, removeSubtask, setNewTaskName, setNewTaskDescription, setNewTaskStatus } = taskSlice.actions;
 export default taskSlice.reducer;

@@ -4,7 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { RootState } from "../store/store";
 import { closeAddNewTask } from "../store/uiSlice";
 import { EventEmitter } from "stream";
-import { addSubtask, removeSubtask } from "../store/taskSlice";
+import { addSubtask, removeSubtask, setNewTaskName, setNewTaskDescription, setNewTaskStatus } from "../store/taskSlice";
 import { RxCross2 } from "react-icons/rx";
 
 const AddNewTaskWrapper = styled.section<{addNewTaskIsOpen: boolean}>`
@@ -106,7 +106,7 @@ function AddNewTask() {
             board_name: activeBoardName,
             status: newTask.status,
         }
-        console.log(newTask);
+        console.log(newTaskObject);
     }
 
     return (
@@ -127,7 +127,7 @@ function AddNewTask() {
                             id="name"
                             placeholder="e.g. Take a coffee break"
                             value={newTask.name}
-                            onChange={() => {}}
+                            onChange={(e) => {dispatch(setNewTaskName(e.target.value))}}
                         />
                     </FormGroupWrapper>
                     
@@ -138,7 +138,7 @@ function AddNewTask() {
                             placeholder="E.g. It's always good to take a break. This 15 minute break will recharge the batteries a little."
                             rows={4}
                             value={newTask.description}
-                            onChange={() => {}}
+                            onChange={(e) => {dispatch(setNewTaskDescription(e.target.value))}}
                         />
                     </FormGroupWrapper>
 
@@ -160,7 +160,7 @@ function AddNewTask() {
                     
                     <FormGroupWrapper>
                         <FormGroupLabel htmlFor="status">Status</FormGroupLabel>
-                        <select id="status">
+                        <select id="status" onChange={(e) => {dispatch(setNewTaskStatus(e.target.value))}}>
                             <option value="todo">Todo</option>
                             <option value="doing">Doing</option>
                             <option value="done">Done</option>
