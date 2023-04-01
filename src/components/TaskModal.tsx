@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
 import { openTaskModal, closeTaskModal } from "../store/uiSlice";
-import { addSubtask } from "../store/taskSlice";
+import { addSubtask, updateStatusOfOpenedTask } from "../store/taskSlice";
 import { RxCross2 } from "react-icons/rx";
 
 const TaskModalWrapper = styled.div<{taskModalIsOpen: boolean}>`
@@ -43,6 +43,10 @@ const TaskDescription = styled.p`
     line-height: 1.5;
 `;
 
+const SubtaskLabel = styled.label<{subtaskIsCompleted: boolean}>`
+    text-decoration: ${props => props.subtaskIsCompleted ? 'line-through' : 'none'};
+`;
+
 function TaskModal() {
     const taskModalIsOpen = useSelector((state: RootState) => state.ui.taskModalIsOpen);
     const openedTask = useSelector((state: RootState) => state.task.openedTask);
@@ -60,17 +64,21 @@ function TaskModal() {
                 <form>
                     {openedTask.subtasks.map((subtask: Subtask) => {
                         return(
-                            <div>
+                            <div key={subtask.subtask_name}>
                                 <input
                                 type="checkbox"
                                 name={`subtask${subtask.id}`}
                                 value={subtask.subtask_name}
                                 checked={subtask.subtask_isCompleted}
                                 key={subtask.id}
+                                onChange={() => {console.log(subtask)}}
                                 />
-                                <label htmlFor={`subtask${subtask.id}`}>
+                                <SubtaskLabel
+                                    htmlFor={`subtask${subtask.id}`}
+                                    subtaskIsCompleted={subtask.subtask_isCompleted}
+                                >
                                     {subtask.subtask_name}
-                                </label>
+                                </SubtaskLabel>
                             </div>
                         )
                     })}
@@ -79,7 +87,7 @@ function TaskModal() {
 
 
                 Status placeholder
-                <select id="status" onChange={() => {}}>
+                <select id="status" onChange={(e) => {dispatch(updateStatusOfOpenedTask(e.target.value))}}>
                     <option value="todo">Todo</option>
                     <option value="doing">Doing</option>
                     <option value="done">Done</option>
@@ -91,3 +99,4 @@ function TaskModal() {
 }
 
 export default TaskModal;
+
