@@ -77,7 +77,7 @@ const SubtaskElement = styled.div`
 
 function AddNewTask() {
     const addNewTaskIsOpen = useSelector((state: RootState) => state.ui.addNewTaskIsOpen);
-    const newTask = useSelector((state: RootState) => state.task.newTask);
+    const newTask = useSelector((state: RootState) => state.task.newTask as Task);
     const newSubtasks = useSelector((state: RootState) => state.task.newTask.subtasks);
     const activeBoardName = useSelector((state: RootState) => state.task.activeBoard);
     const dispatch = useDispatch();
@@ -131,6 +131,7 @@ function AddNewTask() {
                             placeholder="e.g. Take a coffee break"
                             value={newTask.name}
                             onChange={(e) => {dispatch(setNewTaskName(e.target.value))}}
+                            required={true}
                         />
                     </FormGroupWrapper>
                     

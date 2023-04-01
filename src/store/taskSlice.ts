@@ -6,6 +6,7 @@ export interface TaskState {
     activeBoard: string;
     tasks: Task[];
     newTask: Task;
+    openedTask: Task;
 };
 
 const initialState:TaskState = {
@@ -15,26 +16,17 @@ const initialState:TaskState = {
         id: '',
         name: '',
         description: '',
-        subtasks: [
-            {
-                subtask_name: 'First Subtask',
-                subtask_isCompleted: false,
-                id: '3232hgjfdhg',
-            },
-            {
-                subtask_name: 'Second Subtask',
-                subtask_isCompleted: false,
-                id: 'fdhjfhd434234',
-            },
-            {
-                subtask_name: 'Third Subtask',
-                subtask_isCompleted: false,
-                id: 'hjghfdj42345435',
-            },
-
-        ],
+        subtasks: [],
         board_name: '',
         status: "todo",
+    },
+    openedTask: {
+        id: '',
+        name: '',
+        description: '',
+        subtasks: [],
+        board_name: '',
+        status: 'todo',
     }
 };
 
@@ -70,8 +62,11 @@ export const taskSlice = createSlice({
         resetNewTaskFormFields: (state) => {
             state.newTask = initialState.newTask; 
         },
+        setOpenedTask: (state, {payload}) => {
+            state.openedTask = payload;
+        },
     },
 });
 
-export const { getTasks, setActiveBoard, addSubtask, removeSubtask, setNewTaskName, setNewTaskDescription, setNewTaskStatus, addNewTaskToTasks, resetNewTaskFormFields } = taskSlice.actions;
+export const { getTasks, setActiveBoard, addSubtask, removeSubtask, setNewTaskName, setNewTaskDescription, setNewTaskStatus, addNewTaskToTasks, resetNewTaskFormFields, setOpenedTask } = taskSlice.actions;
 export default taskSlice.reducer;

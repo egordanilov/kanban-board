@@ -30,6 +30,7 @@ interface CanvasColumnProps {
 }
 
 function CanvasColumn({status, numberOfTasks, tasks}: CanvasColumnProps) {
+
     return (
         <CanvasColumnWrapper>
             <CanvasColumnHeader>

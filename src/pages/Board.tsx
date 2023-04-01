@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Canvas from '../components/Canvas';
 import Sidebar from '../components/Sidebar';
 import AddNewTask from '../components/AddNewTask';
+import TaskModal from '../components/TaskModal';
 
 const BoardWrapper = styled.section`
     display: flex;
@@ -26,6 +27,7 @@ function Board():ReactElement {
             <Sidebar />
             <Canvas />
             <AddNewTask />
+            <TaskModal />
         </BoardWrapper>
     )
 }

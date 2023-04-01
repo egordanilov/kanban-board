@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { setOpenedTask } from '../store/taskSlice';
+import { openTaskModal } from '../store/uiSlice';
+import { RootState } from '../store/store';
 
 type Subtask = {
     subtask_name: string;
@@ -43,9 +47,22 @@ const NumberOfSubtasks = styled.div`
     color: #6c7383;
 `;
 
-function Task({name, description, subtasks, status}:TaskProps) {
+function Task({id, name, description, subtasks, status}:TaskProps) {
+    const dispatch = useDispatch();
+    const tasksArray = useSelector((state: RootState) => state.task.tasks)
+    const taskClickHandler = () => {
+        console.log('task has been clicked');
+        //find the task in list
+        const foundTask = tasksArray.filter((task) => task.id === id)[0];
+        console.log(foundTask);
+        dispatch(setOpenedTask(foundTask));
+        //display this task in a modal
+
+        dispatch(openTaskModal());   
+    }
+
     return (
-        <TaskWrapper>
+        <TaskWrapper onClick={() => {taskClickHandler()}}>
             <TaskName>{name}</TaskName>
             <NumberOfSubtasks>0 of {subtasks.length} subtasks</NumberOfSubtasks>
         </TaskWrapper>

@@ -5,12 +5,14 @@ export interface UIState {
     nightModeIsOn: boolean;
     sidebarIsOpen: boolean;
     addNewTaskIsOpen: boolean;
+    taskModalIsOpen: boolean;
 }
 
 const initialState: UIState = {
     nightModeIsOn: true,
     sidebarIsOpen: true,
-    addNewTaskIsOpen: true,
+    addNewTaskIsOpen: false,
+    taskModalIsOpen: false,
 }
 
 export const uiSlice = createSlice({
@@ -32,9 +34,15 @@ export const uiSlice = createSlice({
         openAddNewTask: (state) => {
             state.addNewTaskIsOpen = true;
         },
+        openTaskModal: (state) => {
+            state.taskModalIsOpen = true;
+        },
+        closeTaskModal: (state) => {
+            state.taskModalIsOpen = false;
+        }
     },
 })
 
-export const { toggleNightMode, closeSidebar, openSidebar, openAddNewTask, closeAddNewTask } = uiSlice.actions;
+export const { toggleNightMode, closeSidebar, openSidebar, openAddNewTask, closeAddNewTask, openTaskModal, closeTaskModal } = uiSlice.actions;
 
 export default uiSlice.reducer;
