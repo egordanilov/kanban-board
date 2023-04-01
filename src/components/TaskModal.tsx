@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
 import { openTaskModal, closeTaskModal } from "../store/uiSlice";
-import { addSubtask, updateStatusOfOpenedTask } from "../store/taskSlice";
+import { addSubtask, updateStatusOfOpenedTask, toggleSubtaskCompletionInOpenedTask } from "../store/taskSlice";
 import { RxCross2 } from "react-icons/rx";
 
 const TaskModalWrapper = styled.div<{taskModalIsOpen: boolean}>`
@@ -71,7 +71,7 @@ function TaskModal() {
                                 value={subtask.subtask_name}
                                 checked={subtask.subtask_isCompleted}
                                 key={subtask.id}
-                                onChange={() => {console.log(subtask)}}
+                                onChange={() => {dispatch(toggleSubtaskCompletionInOpenedTask(subtask))}}
                                 />
                                 <SubtaskLabel
                                     htmlFor={`subtask${subtask.id}`}

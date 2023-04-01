@@ -68,8 +68,29 @@ export const taskSlice = createSlice({
         updateStatusOfOpenedTask: (state, {payload}) => {
             state.openedTask.board_name = payload;
         },
+        toggleSubtaskCompletionInOpenedTask: (state, {payload}) => {
+            console.log(state.openedTask.subtasks);
+            console.log(payload);
+            const updatedSubtasks = [...state.openedTask.subtasks].filter((subtask) => subtask.subtask_name !== payload.subtask_name);
+            updatedSubtasks.push({subtask_name: payload.subtask_name, subtask_isCompleted: !payload.subtask_isCompleted} as Subtask);
+            state.openedTask.subtasks = updatedSubtasks;
+            console.log(state.openedTask.subtasks)
+        }, 
     },
 });
 
-export const { getTasks, setActiveBoard, addSubtask, removeSubtask, setNewTaskName, setNewTaskDescription, setNewTaskStatus, addNewTaskToTasks, resetNewTaskFormFields, setOpenedTask, updateStatusOfOpenedTask } = taskSlice.actions;
+export const { 
+    getTasks,
+    setActiveBoard,
+    addSubtask,
+    removeSubtask,
+    setNewTaskName,
+    setNewTaskDescription,
+    setNewTaskStatus,
+    addNewTaskToTasks,
+    resetNewTaskFormFields,
+    setOpenedTask,
+    updateStatusOfOpenedTask,
+    toggleSubtaskCompletionInOpenedTask
+} = taskSlice.actions;
 export default taskSlice.reducer;
